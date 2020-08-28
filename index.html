@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+	<meta charset="utf-8">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.2/handlebars.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="style.css">
+	<title>ex-dischi-musicali-checkbox</title>
+</head>
+
+<body>
+	<header>
+		<div class="container">
+			<img src="logo.png" alt="logo" />
+		</div>
+	</header>
+
+
+
+	<div class="cds-container container">
+
+	</div>
+
+
+	<script id="template" type="text/x-handlebars-template">
+			<div class="cd {{genre}}">
+				<img src={{poster}} alt="{{title}}">
+				<h3>{{title}}</h3>
+				<span class="author">{{author}}</span>
+				<span class="year">{{year}}</span>
+			</div>
+		</script>
+
+
+	<script src="main.js" charset="utf-8"></script>
+</body>
+
+</html>
