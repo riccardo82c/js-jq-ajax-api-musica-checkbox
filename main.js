@@ -11,13 +11,12 @@ $(document).ready(function () {
 
 			transformAttr(data.response, 'genre');
 
+
+			let allCategory = reduceCategory(data.response, 'genre');
 			// crea il DOM
 			createDOM(data.response);
 			// crea le opzioni delle checkbox DINAMICAMENTE
 			createOptions(data.response);
-
-			// setto tutti i check a true
-			displayAll();
 
 			// funzione al change di una checkbox
 			$('input').change(controlCheck);
@@ -40,37 +39,40 @@ function transformAttr(arr, attr) {
 }
 
 // popolazione del DOM
-function createDOM(data) {
+function createDOM(obj) {
 	var source = $('#template').html();
 	var template = Handlebars.compile(source);
-	for (var i = 0; i < data.length; i++) {
-		var html = template(data[i]);
+	for (var i = 0; i < obj.length; i++) {
+		var html = template(obj[i]);
 		$('.cds-container').append(html);
 	}
 }
 
 // Creazione dinamica delle option delle checkbox
-function createOptions(data) {
+function createOptions(obj) {
 	$('header').after('<div id="check-box"></div');
-	var allCategory = reduceCategory(data, 'genre');
+	var allCategory = reduceCategory(obj, 'genre');
 	console.log(allCategory);
 	for (var i = 0; i < allCategory.length; i++) {
 		$('#check-box').append(`<div class='box'>	<input type="checkbox" id="genere${i}" value="${allCategory[i]}"><label  for = "genere${i}" > ${allCategory[i].toUpperCase()} </label> </div>`);
 	}
 }
 
-// Visualizza gli items del DOM in funzione del cambio dell'input in select
-function displayAll() {
-	$("input").prop("checked", true);
-	console.log($('#genere0').prop('checked'));
-}
-
-
 // Controllo il cambio di 'checked' nelle checkbox e mostro o nascondo di conseguenza gli elementi con 'genre' = valore checkbox
 function controlCheck() {
-	let check = $(this).prop('checked');
-	let category = $(this).val();
-	check === true ? $('.cd.' + category).show() : $('.cd.' + category).hide();
+	let countUnCheck = 0;
+	for (let i = 0; i < 4; i++) {
+		let thisCategory = $(`#genere${i}`);
+		if (!thisCategory.prop('checked')) {
+			$('.cd.' + thisCategory.val()).hide();
+			countUnCheck++;
+		} else {
+			$('.cd.' + thisCategory.val()).show();
+		}
+	}
+	if (countUnCheck == 0 || countUnCheck == 4) {
+		$('.cd').show();
+	}
 }
 
 
