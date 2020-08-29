@@ -32,7 +32,7 @@ header img {
 	justify-content: center;
 	align-items: center;
 	flex-wrap: wrap;
-	padding: 100px 0;
+	padding: 0 0 60px 0;
 }
 
 .cd {
@@ -69,25 +69,34 @@ header img {
 }
 
 
-/* checkbox style */
+/* Checkbox style */
 
 #check-box {
 	width: 60%;
-	margin: 0 auto;
-	display: flex;
-	justify-content: space-evenly;
-	font-size: 18px;
-	color: white;
+	min-width: 1080px;
+	margin: 25px auto;
+	padding: 10px 0;
 
+	display: flex;
+	justify-content: center;
+
+	font-size: 18px;
+
+	color: grey;
+	border-bottom: 3px solid #2e3a46;
 }
 
 
 /* CUSTOM "CHECKED" ICON */
 .box input:checked~label:before {
-	font-size: 18px;
+	font-size: 19px;
 	content: "\266A";
+
 	color: #1E2D3B;
+	background-color: rgb(64, 214, 102);
+	border: 2px solid rgb(64, 214, 102);
 }
+
 
 .box input {
 	display: none;
@@ -97,24 +106,42 @@ header img {
 .box label:before {
 	display: inline-block;
 	content: "\00a0";
+	border-radius: 8px;
 	/* Blank space */
 	width: 20px;
 	margin-right: 5px;
 	text-align: center;
-	background: #f2f2f2;
+	background: transparent;
+	border: 2px solid grey;
 }
 
 /* OPTIONAL COSMETICS */
 .box {
-	font-size: 16px;
+	font-size: 18px;
 	line-height: 20px;
-	margin: 10px;
+	margin: 10px 0;
+	padding: 0 20px;
 }
+
+/* all boxes except first */
+#check-box .box:not(:last-child) {
+	border-right: 3px solid #2e3a46;
+
+}
+
 
 .box label {
 	cursor: pointer;
 }
 
+
+
+
+.box label:hover {
+	color: rgb(64, 214, 102);
+}
+
 .box label:hover::before {
-	background: rgb(108, 169, 209);
+	border: 2px solid rgb(64, 214, 102);
+	/* background: rgb(64, 214, 102); */
 }
